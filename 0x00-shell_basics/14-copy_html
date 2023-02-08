@@ -1,0 +1,51 @@
+#!/bin/bash
+
+
+
+# Get list of html files in the current working directory
+
+files=$(find . -name "*.html")
+
+
+
+# Loop through the files
+
+for file in $files; do
+
+    # Extract the filename from the path
+
+    filename=$(basename "$file")
+
+
+
+    # Check if the file exists in the parent directory
+
+    if [ -f ../$filename ]; then
+
+        # Get the modification time of the file in the parent directory
+
+        old_time=$(stat -c %Y ../$filename)
+
+        new_time=$(stat -c %Y $file)
+
+
+
+        # Compare the modification time of the files
+
+        if [ $new_time -gt $old_time ]; then
+
+            # Copy the file
+
+            cp $file ..
+
+        fi
+
+    else
+
+        # Copy the file
+
+        cp $file ..
+
+    fi
+
+done
