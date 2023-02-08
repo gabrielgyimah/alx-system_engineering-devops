@@ -1,0 +1,2 @@
+#!/bin/bash
+file_path="/tmp/iamafile" if [ -f "$file_path" ]; then echo "$file_path: $(file "$file_path")"; else echo "Error: $file_path does not exist or is not a regular file."; fi

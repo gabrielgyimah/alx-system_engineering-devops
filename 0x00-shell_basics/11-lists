@@ -1,2 +1,2 @@
 #!/bin/bash
-echo "Files in the current directory:\n$(ls -l)\nFiles in the parent of the working directory:\n$(ls -l ..)"
+echo "Files in the current directory:\n$(ls -l)\nFiles in the paren:"
