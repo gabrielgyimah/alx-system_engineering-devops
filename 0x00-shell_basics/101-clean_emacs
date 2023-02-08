@@ -1,2 +1,2 @@
 #!/bin/bash#!
-rm *~ .*~
+find $(pwd) -name "*~" -type f -delete
