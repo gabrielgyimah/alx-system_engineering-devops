@@ -1,2 +1,4 @@
-#!/bin/bash
-echo "0 string SCHOOL School data" | sudo tee /usr/share/file/magic/school.mgc > /dev/null
+!:mime school
+0 string SCHOOL School data file
+#
+#
