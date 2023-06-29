@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# A bash scripts that displays numbers from 1 - 200
+# Dsiplays Fizz if number is a multiple of 3 and Buzz when 5
+
+for num  in {1..100}; do
+	if ((num % 3 == 0)); then
+		echo "Fizz"
+	fi
+	if ((num % 5 == 0)); then
+		echo "Buzz"
+	fi
+	else
+		echo "$num"
+done
