@@ -7,13 +7,13 @@
 HOUR=0
 
 while [ $HOUR -le 12 ]; do
-    echo "Hour: $HOUR"
+	echo "Hour: $HOUR"
 
-    MIN=1
+	MIN=1
 
-    while [ $MIN -le 59 ]; do
-        echo "$MIN"
-        MIN=$((MIN + 1))
-    done
-    HOUR=$((HOUR + 1))
+	while [ $MIN -le 59 ]; do
+		echo "$MIN"
+		MIN=$((MIN + 1))
+	done
+	HOUR=$((HOUR + 1))
 done

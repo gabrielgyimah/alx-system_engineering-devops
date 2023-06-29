@@ -5,6 +5,6 @@ COUNTER=0
 SENTENCE="Best School"
 
 until [ $COUNTER == 10 ]; do
-    echo "$SENTENCE"
-    COUNTER=$((COUNTER + 1))
+	echo "$SENTENCE"
+	COUNTER=$((COUNTER + 1))
 done
