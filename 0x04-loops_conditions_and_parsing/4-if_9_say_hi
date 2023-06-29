@@ -6,8 +6,8 @@ SENTENCE="Best School"
 
 while [ $COUNTER -lt 10 ]; do
 	if [ $COUNTER -eq 9 ]; then
-		echo "$SENTENCE"
 		echo "hi"
+		echo "$SENTENCE"
 	else
 		echo "$SENTENCE"
 	fi
