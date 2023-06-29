@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# Displays "Best School" 10 times to the stdin using until loop
+
+COUNTER=0
+SENTENCE="Best School"
+
+until [ $COUNTER == 10 ]; do
+    echo "$SENTENCE"
+    COUNTER=$((COUNTER + 1))
+done
