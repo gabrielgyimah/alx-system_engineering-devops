@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# A Bash script that displays the PID
+
+PIDS=$(pgrep bash)
+
+for pid in $PIDS; do
+	echo "$pid bash"
+done
