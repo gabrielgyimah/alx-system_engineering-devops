@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+# A Bash script that stops 7-highlander process
+# You cannot use kill or killall
+
+pids=$(ps aux | grep ./7-highlander)
+j=0
+
+for pid in $pids; do
+	if [ $j -gt 0 ]; then
+		pkill pid
+	fi
+	j=$((j + 1))
+done
