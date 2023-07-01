@@ -1,4 +1,12 @@
 #!/usr/bin/env bash
 # A Bash script that stops 4-to_infinity_and_beyond process
 
-kill 4-to_infinity_and_beyond
+pids=$( ps eaux | pgrep ./4-to_infinity_and_beyond )
+counter=0
+
+for pid in $pids; do
+	if [ "$j" -gt 0 ]; then
+		kill -n 9 "$pid"
+	fi
+	counter=$((counter + 1))
+done
