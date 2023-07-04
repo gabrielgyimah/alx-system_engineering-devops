@@ -1,11 +1,7 @@
 #!/usr/bin/env ruby
-log_entry = ARGV[0]
-
-pattern = /\[from:([^]]+)\] \[to:([^]]+)\] \[flags:([^]]+)\]/
-
-matches = log_entry.scan(pattern)
-
-if matches.any?
-  sender, receiver, flags = matches[0]
-  puts "#{sender},#{receiver},#{flags}"
-end
+$stdout.sync = true
+print ARGV[0].scan(/from:(\+?\d*)/).join
+print ","
+print ARGV[0].scan(/to:(\+?\d*)/).join
+print ","
+puts ARGV[0].scan(/flags:([:\-0-9]*)/).join
