@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+hosts_file="/etc/hosts"
+localhost_ip="127.0.0.2"
+facebook_ip="8.8.8.8"
+
+# Add localhost entry
+if grep -q "localhost" "$hosts_file"; then
+    sed -i "s/^.*localhost.*$/$localhost_ip\tlocalhost/" "$hosts_file"
+else
+    echo -e "$localhost_ip\tlocalhost" >> "$hosts_file"
+fi
+
+# Add facebook.com entry
+if grep -q "facebook.com" "$hosts_file"; then
+    sed -i "s/^.*facebook.com.*$/$facebook_ip\tfacebook.com/" "$hosts_file"
+else
+    echo -e "$facebook_ip\tfacebook.com" >> "$hosts_file"
+fi

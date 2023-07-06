@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# Displays the IPv4 addresses on the current machine
+
+ip_addresses=$( ifconfig | cut -d ' ' -f 10 | grep -E '[0-9]*\.[0-9]*\.[0-9]*\.[0-9]*' )
+
+echo "$ip_addresses"
