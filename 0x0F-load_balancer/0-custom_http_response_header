@@ -2,9 +2,20 @@
 # Configure Nginx so that its HTTP response contains a custom header
 apt-get update
 apt-get install update -y
-apt-get install nginx
+apt-get install nginx -y
+chown -R "$USER":"$USER" /var/www/html
+echo "Hello World!" > /var/www/html/index.mginx-debian.html
 SERVER="$(hostname)"
 NGINX_CONF="/etc/nginx/nginx.conf"
 DIRECTIVE="add_header X-Served-By \"$SERVER\";"
 sed -i '/http {/a \\t'"$DIRECTIVE" "$NGINX_CONF"
+quote='"'
+line1="\\\tlocation /redirect_me {\n\t\treturn 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;\n\t}"
+sed -i "26i $line1" /etc/nginx/sites-available/default
+mkdir -p /var/www/default
+echo "Ceci n'est pas une page" > /var/www/default/404.html
+line2="\\\tlocation = /404.html {\n\t\t root /var/www/default;\n\t}"
+sed -i "29i $line2" /etc/nginx/sites-available/default
+line3="\\\terror_page 404 /404.html;"
+sed -i "32i $line3" /etc/nginx/sites-available/default
 sudo systemctl reload nginx
