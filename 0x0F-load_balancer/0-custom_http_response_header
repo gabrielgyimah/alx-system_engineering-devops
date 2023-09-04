@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# Configure Nginx so that its HTTP response contains a custom header
+
+SERVER="$(hostname)"
+NGINX_CONF="/etc/nginx/nginx.conf"
+DIRECTIVE="add_header X-Served-By \"$SERVER\";"
+sed -i '/http {/a \\t'"$DIRECTIVE" "$NGINX_CONF"
+sudo systemctl reload nginx
