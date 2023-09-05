@@ -1,26 +1,11 @@
 #!/usr/bin/env bash
 # Installs and configures HAproxy on a server
 
-apt-get update
-apt-get install haproxy -y
+sudo apt-get -y install software-properties-common
+sudo add-apt-repository -y ppa:vbernat/haproxy-2.5
+sudo apt-get -y update
 
-HAPROXY_INIT_FILE="/etc/init.d/haproxy"
-
-if [ ! -e "$HAPROXY_INIT_FILE" ]; then
-	cp haproxy "/etc/init.d/"
-fi
-
-HAPROXY_CONF_FILE="/etc/haproxy/haproxy.cfg"
-
-if [ ! -e "$HAPROXY_CONF_FILE" ]; then
-	cp haproxy.cfg "etc/haproxy/"
-else
-	echo "frontend my_frontend" >> "$HAPROXY_CONF_FILE"
-	echo "	bind *:80" >> "$HAPROXY_CONF_FILE"
-	echo "	default_backend my_backend" >> "$HAPROXY_CONF_FILE"
-	echo ""
-	echo "backend my_backend" >> "$HAPROXY_CONF_FILE"
-        echo "	balance roundrobin" >> "$HAPROXY_CONF_FILE"
-        echo "	server 251231-web-01 54.208.108.153:80 check" >> "$HAPROXY_CONF_FILE"
-        echo "	server 251231-web-02 52.86.165.89:80 check" >> "$HAPROXY_CONF_FILE"
-fi
+sudo apt-get -y install haproxy
+sudo sed -i -e '$aENABLED=1\n' /etc/default/haproxy
+sudo sed -i -e '$a\listen http-in\n\tbind :80\n\tbalance roundrobin\n\tserver 58027-web-01 54.237.103.36:80 check\n\tserver 58027-web-02 18.204.11.153:80 check\n' /etc/haproxy/haproxy.cfg
+sudo service haproxy restart

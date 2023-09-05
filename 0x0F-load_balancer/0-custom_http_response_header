@@ -18,4 +18,4 @@ line2="\\\tlocation = /404.html {\n\t\t root /var/www/default;\n\t}"
 sed -i "29i $line2" /etc/nginx/sites-available/default
 line3="\\\terror_page 404 /404.html;"
 sed -i "32i $line3" /etc/nginx/sites-available/default
-sudo systemctl reload nginx
+service nginx restart
