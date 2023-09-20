@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# Displays the current users name
+
+if [[ $1 ]]; then
+	sudo -u "$1" whoami
+fi
