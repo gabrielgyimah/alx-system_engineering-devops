@@ -1,19 +1,19 @@
 #!/usr/bin/python3
 """API REQUESTS MODULE"""
 
-import sys
 import requests
 import json
+from sys import argv
 
 
 if __name__ == "__main__":
     """Returns information about his/her TODO list progress"""
 
     user_res = requests.get(
-        f'https://jsonplaceholder.typicode.com/users/{sys.argv[1]}'
+        f'https://jsonplaceholder.typicode.com/users/{argv[1]}'
     )
     todo_res = requests.get(
-        f'https://jsonplaceholder.typicode.com/users/{sys.argv[1]}/todos'
+        f'https://jsonplaceholder.typicode.com/users/{argv[1]}/todos'
     )
 
     if user_res.status_code == 200 and todo_res.status_code == 200:
