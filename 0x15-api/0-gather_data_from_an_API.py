@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 """API REQUESTS MODULE"""
 
-import requests
 import sys
+import requests
 import json
 
 
