@@ -2,35 +2,23 @@
 """API REQUESTS MODULE"""
 
 import requests
-import json
 from sys import argv
 
 
 if __name__ == "__main__":
     """Returns information about his/her TODO list progress"""
 
-    user_res = requests.get(
-        f'https://jsonplaceholder.typicode.com/users/{argv[1]}'
-    )
-    todo_res = requests.get(
-        f'https://jsonplaceholder.typicode.com/users/{argv[1]}/todos'
-    )
-
-    if user_res.status_code == 200 and todo_res.status_code == 200:
-        j_user_data = json.loads(user_res.text)
-        j_todo_data = json.loads(todo_res.text)
-
-        completed_tasks = [t for t in j_todo_data if t["completed"]]
-        len_comptd = len(completed_tasks)
-        len_total = len(j_todo_data)
-
-        print(
-            f"Employee {j_user_data['name']} is done with\
- tasks({len_comptd}/{len_total}):"
-        )
-
-        for val in completed_tasks:
-            print(
-                f"\
-    {val['title']}"
-            )
+    base_url = 'https://jsonplaceholder.typicode.com/users/{}'.format(argv[1])
+    todo_url = '{}/todos'.format(base_url)
+    res = requests.get(todo_url)
+    if res.status_code == 200:
+        res = res.json()
+        name = requests.get(base_url).json().get('name')
+        completed_tasks = [val for val in res if val["completed"]]
+        length = len(completed_tasks)
+        total = len(res)
+        print('Employee {} is done with tasks({}/{}):'.format(
+            name, length,
+            total))
+        for task in completed_tasks:
+            print('\t {}'.format(task['title']))
